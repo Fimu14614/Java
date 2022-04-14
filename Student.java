@@ -1,42 +1,97 @@
+package project;
 
-package student;
-
+import java.util.Scanner;
 
 public class Student {
 
+    private String Firstname;
+    private String Lastname;
+    private int studentID;
+    private int amount;
+    private int Semester;
+    private int Batchno;
+    private String Section;
+    private String courses;
+    private int costofcourse = 5000;
+    private int totalbalance = 0;
     
-    private String name;
-    private int Id;
-    private double cgpa;
+    Student() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("\nEnter First Name: ");
+        this.Firstname = in.nextLine();
 
-    public void insertRecord(String name, int Id, double cgpa) {
+        System.out.print("Enter Last Name: ");
+        this.Lastname = in.nextLine();
 
-        this.name = name;
-        this.Id = Id;
-        this.cgpa = cgpa;
+        System.out.print("Enter Semester No: ");
+        this.Semester = in.nextInt();
+
+        System.out.print("Enter Batch No: ");
+        this.Batchno = in.nextInt();
+
+        System.out.print("Enter StudentID: ");
+        this.studentID = in.nextInt();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Section Name: ");
+        this.Section = sc.nextLine();
+
+        System.out.println("Student Name:" + Firstname + " " + Lastname + " ");
+
+        System.out.println("Semester:" + Semester);
+
+        System.out.println("Batch No:" + Batchno);
+
+        System.out.println("Student ID:" + studentID);
+
+        System.out.println("Section Name:" + Section);
+
     }
 
-    public void displayRecord() {
+    public void enroll() {
+        System.out.println("Press s to stop enrollment");
+        do {
+            System.out.println("Enter course to enroll:");
+            Scanner in = new Scanner(System.in);
+            String course = in.nextLine();
+            if (!course.equals("s")) {
+                courses = courses + "\n    " + course;
+                totalbalance = totalbalance + costofcourse;
+            } else {
+                break;
+            }
+        } while (1 != 0);
+        System.out.println("Enrolled in:" + courses);
+        System.out.println("Total balance:" + totalbalance);
 
-        System.out.println("Name: " + name);
-        System.out.println("Id: " + Id);
-        System.out.println("CGPA: " + cgpa);
     }
+
+    
     
 
-    public static void main(String[] args) {
-        Student s1 = new Student();
-        s1.insertRecord("X", 14570, 3.00);
-        s1.displayRecord();
-        Student s2 = new Student();
-        s2.insertRecord("Y", 14569, 3.70);
-        s2.displayRecord();
-        Student s3 = new Student();
-        s3.insertRecord("Z", 14568, 3.50);
-        s3.displayRecord();
-        Student s4 = new Student();
-        s4.insertRecord("A", 14559, 3.40);
-        s4.displayRecord();
+    public void paybalance() {
+       
+        System.out.print("How much you want to pay?:");
+        Scanner in = new Scanner(System.in);
+        amount = in.nextInt();
+        totalbalance = totalbalance - amount;
+
+    }
+public void duebalance() {
+        System.out.println("Your due balance is:" + totalbalance);
+}
+    public String StudentInformation() {
+        
+
+        return "\n\nName: " + Firstname + " " + Lastname
+                + "\nSemester No: " + Semester
+                + "\nBatch No No: " + Batchno
+                + "\nStudent ID: " + studentID
+                + "\nSection Name: " + Section
+                + "\nYou have enrolled these courses:" + courses
+                + "\nPaid Balance: " + amount
+                + "\nDue Balance: " + totalbalance;
+        
 
     }
 }
